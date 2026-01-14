@@ -159,11 +159,41 @@ function displayRepositoriesInGrid(repositories, gridEl) {
  * @param {Object} repo リポジトリ情報
  * @returns {HTMLElement} リポジトリカード要素
  */
+/**
+ * リポジトリがフォークかどうかを判定（categorize.jsと同じロジック）
+ * @param {Object} repo リポジトリ情報
+ * @param {string} username GitHubユーザー名
+ * @returns {boolean} フォークかどうか
+ */
+function isRepositoryForked(repo, username = window.GITHUB_USERNAME || 'fumifumi0831') {
+    const isFork = repo.fork === true;
+    let actuallyForked = false;
+    
+    if (isFork) {
+        // フォークしたリポジトリの場合
+        if (repo.parent && repo.parent.owner) {
+            // parentのownerが自分でない場合は、他人のリポジトリをフォークしたもの
+            actuallyForked = repo.parent.owner.login !== username;
+        } else {
+            // parentが存在しない場合は、ownerが自分でない場合はフォークとみなす
+            actuallyForked = repo.owner?.login !== username;
+        }
+    }
+    
+    return actuallyForked;
+}
+
+/**
+ * リポジトリカード要素を作成
+ * @param {Object} repo リポジトリ情報
+ * @returns {HTMLElement} リポジトリカード要素
+ */
 function createRepositoryCard(repo) {
     const card = document.createElement('article');
     card.className = 'repo-card';
 
-    const isFork = repo.fork === true && repo.parent?.owner?.login !== (window.GITHUB_USERNAME || 'fumifumi0831');
+    // categorize.jsと同じロジックで判定
+    const isFork = isRepositoryForked(repo);
     const typeClass = isFork ? 'forked' : 'original';
     const typeLabel = isFork ? 'Forked' : 'Original';
 
