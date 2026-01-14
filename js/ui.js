@@ -3,6 +3,8 @@
  * リポジトリカードの表示、フィルタリング機能
  */
 
+const GITHUB_USERNAME = 'fumifumi0831';
+
 let categorizedRepos = null;
 let currentFilter = 'all';
 
@@ -61,6 +63,14 @@ async function loadAndDisplayRepositories() {
         loadingEl.style.display = 'block';
         errorEl.style.display = 'none';
         containerEl.style.display = 'none';
+
+        // 関数が定義されているか確認
+        if (typeof loadRepositories === 'undefined') {
+            throw new Error('loadRepositories関数が定義されていません。api.jsが正しく読み込まれているか確認してください。');
+        }
+        if (typeof categorizeRepositories === 'undefined') {
+            throw new Error('categorizeRepositories関数が定義されていません。categorize.jsが正しく読み込まれているか確認してください。');
+        }
 
         const repositories = await loadRepositories();
         categorizedRepos = categorizeRepositories(repositories);
