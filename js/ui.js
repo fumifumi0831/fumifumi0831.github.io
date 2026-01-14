@@ -3,8 +3,6 @@
  * リポジトリカードの表示、フィルタリング機能
  */
 
-const GITHUB_USERNAME = 'fumifumi0831';
-
 let categorizedRepos = null;
 let currentFilter = 'all';
 
@@ -165,7 +163,7 @@ function createRepositoryCard(repo) {
     const card = document.createElement('article');
     card.className = 'repo-card';
 
-    const isFork = repo.fork === true && repo.parent?.owner?.login !== GITHUB_USERNAME;
+    const isFork = repo.fork === true && repo.parent?.owner?.login !== (window.GITHUB_USERNAME || 'fumifumi0831');
     const typeClass = isFork ? 'forked' : 'original';
     const typeLabel = isFork ? 'Forked' : 'Original';
 

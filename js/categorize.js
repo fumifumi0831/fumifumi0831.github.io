@@ -3,15 +3,13 @@
  * フォーク/オリジナル、プライベート/パブリックで分類
  */
 
-const GITHUB_USERNAME = 'fumifumi0831';
-
 /**
  * リポジトリを分類
  * @param {Array} repositories リポジトリ情報の配列
  * @param {string} username GitHubユーザー名
  * @returns {Object} 分類されたリポジトリオブジェクト
  */
-function categorizeRepositories(repositories, username = GITHUB_USERNAME) {
+function categorizeRepositories(repositories, username = window.GITHUB_USERNAME || 'fumifumi0831') {
     const categorized = {
         original: {
             public: [],

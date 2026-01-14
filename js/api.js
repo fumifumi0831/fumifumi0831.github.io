@@ -3,7 +3,8 @@
  * GitHub REST APIを使用してリポジトリ情報を取得
  */
 
-const GITHUB_USERNAME = 'fumifumi0831';
+// グローバル変数として定義（他のファイルでも使用）
+window.GITHUB_USERNAME = 'fumifumi0831';
 const GITHUB_API_BASE = 'https://api.github.com';
 
 /**
@@ -12,7 +13,7 @@ const GITHUB_API_BASE = 'https://api.github.com';
  */
 async function fetchRepositories() {
     try {
-        const url = `${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos?type=owner&sort=updated&per_page=100`;
+        const url = `${GITHUB_API_BASE}/users/${window.GITHUB_USERNAME}/repos?type=owner&sort=updated&per_page=100`;
         const response = await fetch(url, {
             headers: {
                 'Accept': 'application/vnd.github.v3+json',
