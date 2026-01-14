@@ -72,7 +72,7 @@ body::before {
 
 /* コンテナ */
 .container {
-    max-width: 1000px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 var(--space-lg);
     position: relative;
@@ -343,11 +343,17 @@ body::before {
     margin-left: var(--space-xs);
 }
 
-/* リポジトリグリッド - 広大な余白 */
+/* リポジトリグリッド - 2列レイアウト */
 .repo-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
+}
+
+@media (min-width: 1400px) {
+    .repo-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 /* リポジトリカード - ミニマルで洗練 */
@@ -518,6 +524,12 @@ body::before {
 }
 
 /* レスポンシブ */
+@media (max-width: 1024px) {
+    .repo-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
     :root {
         --space-lg: 2rem;
@@ -568,6 +580,10 @@ body::before {
 
     .repo-name {
         font-size: 1.25rem;
+    }
+
+    .repo-grid {
+        grid-template-columns: 1fr;
     }
 }
 
