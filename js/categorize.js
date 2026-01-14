@@ -26,18 +26,25 @@ function categorizeRepositories(repositories, username = window.GITHUB_USERNAME 
         // すべてのリポジトリをallに追加
         categorized.all.push(repo);
 
-        // フォークかオリジナルか判定
-        const isFork = repo.fork === true;
-        const isOriginal = !isFork || (isFork && repo.owner?.login === username);
-
         // プライベートかパブリックか判定
         const isPrivate = repo.private === true;
         const isPublic = !isPrivate;
 
-        // フォークの判定を再確認（parentオブジェクトも確認）
+        // フォークかオリジナルか判定
+        // repo.fork === true の場合、それはフォーク
+        // ただし、parent.owner.login が username と同じ場合は、自分が作成したリポジトリを自分でフォークしたもの（通常は発生しない）
+        const isFork = repo.fork === true;
         let actuallyForked = false;
-        if (isFork && repo.parent) {
-            actuallyForked = repo.parent.owner?.login !== username;
+        
+        if (isFork) {
+            // フォークしたリポジトリの場合
+            if (repo.parent && repo.parent.owner) {
+                // parentのownerが自分でない場合は、他人のリポジトリをフォークしたもの
+                actuallyForked = repo.parent.owner.login !== username;
+            } else {
+                // parentが存在しない場合は、ownerが自分でない場合はフォークとみなす
+                actuallyForked = repo.owner?.login !== username;
+            }
         }
 
         // 分類

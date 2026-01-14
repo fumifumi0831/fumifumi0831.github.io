@@ -29,17 +29,14 @@
             <!-- フィルタータブ -->
             <div class="filter-tabs" role="tablist">
                 <button class="filter-tab active" data-filter="all" aria-selected="true" role="tab">
-                    <span class="tab-icon">📚</span>
                     すべて
                     <span class="tab-count" id="count-all">0</span>
                 </button>
                 <button class="filter-tab" data-filter="original" aria-selected="false" role="tab">
-                    <span class="tab-icon">📦</span>
                     オリジナル
                     <span class="tab-count" id="count-original">0</span>
                 </button>
                 <button class="filter-tab" data-filter="forked" aria-selected="false" role="tab">
-                    <span class="tab-icon">🔀</span>
                     フォーク
                     <span class="tab-count" id="count-forked">0</span>
                 </button>
@@ -54,7 +51,7 @@
             <!-- エラー状態 -->
             <div class="error-state" id="error" style="display: none;">
                 <p class="error-text">リポジトリの読み込みに失敗しました。</p>
-                <button class="error-retry" onclick="loadAndDisplayRepositories()">再試行</button>
+                <button class="error-retry" onclick="loadRepositories()">再試行</button>
             </div>
 
             <!-- リポジトリ一覧 -->
@@ -90,6 +87,6 @@
 
     <script src="js/api.js"></script>
     <script src="js/categorize.js"></script>
-    <script src="js/ui.js" defer></script>
+    <script src="js/ui.js"></script>
 </body>
 </html>
