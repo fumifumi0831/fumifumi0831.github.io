@@ -237,4 +237,4 @@ function escapeHtml(text) {
 }
 
 // グローバルに公開（エラーハンドリング用）
-window.loadRepositories = loadAndDisplayRepositories;
+window.loadAndDisplayRepositories = loadAndDisplayRepositories;
