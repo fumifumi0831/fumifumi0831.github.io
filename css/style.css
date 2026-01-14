@@ -343,24 +343,18 @@ body::before {
     margin-left: var(--space-xs);
 }
 
-/* リポジトリグリッド - 2列レイアウト */
+/* リポジトリグリッド - 3列レイアウト */
 .repo-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-lg);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
 }
 
-@media (min-width: 1400px) {
-    .repo-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* リポジトリカード - ミニマルで洗練 */
+/* リポジトリカード - コンパクトで洗練 */
 .repo-card {
     background: var(--color-white);
     border: 1px solid var(--color-gray-light);
-    padding: var(--space-lg);
+    padding: var(--space-md);
     transition: all var(--transition-base);
     position: relative;
     animation: fadeInUp 0.8s var(--transition-base) backwards;
@@ -393,21 +387,22 @@ body::before {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: var(--space-md);
-    margin-bottom: var(--space-md);
-    padding-bottom: var(--space-md);
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-sm);
     border-bottom: 1px solid var(--color-gray-light);
 }
 
 .repo-name {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 500;
     letter-spacing: 0.02em;
     color: var(--color-black);
     text-decoration: none;
     transition: color var(--transition-base);
     flex: 1;
+    line-height: 1.4;
 }
 
 .repo-name:hover {
@@ -437,20 +432,24 @@ body::before {
 
 .repo-description {
     font-family: var(--font-body);
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     font-weight: 300;
-    line-height: 1.8;
+    line-height: 1.6;
     color: var(--color-gray);
-    margin-bottom: var(--space-md);
-    min-height: 3em;
+    margin-bottom: var(--space-sm);
+    min-height: 2.5em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .repo-meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-md);
-    padding-top: var(--space-md);
+    gap: var(--space-sm);
+    padding-top: var(--space-sm);
     border-top: 1px solid var(--color-gray-light);
 }
 
@@ -476,7 +475,7 @@ body::before {
 .repo-stats {
     display: flex;
     align-items: center;
-    gap: var(--space-md);
+    gap: var(--space-sm);
 }
 
 .repo-stat {
@@ -524,6 +523,12 @@ body::before {
 }
 
 /* レスポンシブ */
+@media (max-width: 1200px) {
+    .repo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 1024px) {
     .repo-grid {
         grid-template-columns: 1fr;
