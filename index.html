@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="fumifumi0831のGitHubポートフォリオ - リポジトリの自動まとめサイト">
+    <title>Portfolio - fumifumi0831</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-mesh"></div>
+    <div class="noise-overlay"></div>
+    
+    <header class="header">
+        <div class="container">
+            <h1 class="site-title">
+                <span class="title-main">Portfolio</span>
+                <span class="title-sub">fumifumi0831</span>
+            </h1>
+            <p class="site-description">GitHubリポジトリの自動まとめ</p>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- フィルタータブ -->
+            <div class="filter-tabs" role="tablist">
+                <button class="filter-tab active" data-filter="all" aria-selected="true" role="tab">
+                    <span class="tab-icon">📚</span>
+                    すべて
+                    <span class="tab-count" id="count-all">0</span>
+                </button>
+                <button class="filter-tab" data-filter="original" aria-selected="false" role="tab">
+                    <span class="tab-icon">📦</span>
+                    オリジナル
+                    <span class="tab-count" id="count-original">0</span>
+                </button>
+                <button class="filter-tab" data-filter="forked" aria-selected="false" role="tab">
+                    <span class="tab-icon">🔀</span>
+                    フォーク
+                    <span class="tab-count" id="count-forked">0</span>
+                </button>
+            </div>
+
+            <!-- ローディング状態 -->
+            <div class="loading-state" id="loading">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">リポジトリを読み込んでいます...</p>
+            </div>
+
+            <!-- エラー状態 -->
+            <div class="error-state" id="error" style="display: none;">
+                <p class="error-text">リポジトリの読み込みに失敗しました。</p>
+                <button class="error-retry" onclick="loadRepositories()">再試行</button>
+            </div>
+
+            <!-- リポジトリ一覧 -->
+            <div class="repositories-container" id="repositories-container" style="display: none;">
+                <!-- オリジナルプロジェクトセクション -->
+                <section class="repo-section" id="section-original" style="display: none;">
+                    <h2 class="section-title">
+                        <span class="section-icon">📦</span>
+                        <span class="section-text">オリジナルプロジェクト</span>
+                        <span class="section-count" id="count-section-original">0</span>
+                    </h2>
+                    <div class="repo-grid" id="grid-original"></div>
+                </section>
+
+                <!-- フォークしたプロジェクトセクション -->
+                <section class="repo-section" id="section-forked" style="display: none;">
+                    <h2 class="section-title">
+                        <span class="section-icon">🔀</span>
+                        <span class="section-text">フォークしたプロジェクト</span>
+                        <span class="section-count" id="count-section-forked">0</span>
+                    </h2>
+                    <div class="repo-grid" id="grid-forked"></div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">Generated with GitHub API</p>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/categorize.js"></script>
+    <script src="js/ui.js"></script>
+</body>
+</html>
