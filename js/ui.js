@@ -175,8 +175,11 @@ function isRepositoryForked(repo, username = window.GITHUB_USERNAME || 'fumifumi
             // parentのownerが自分でない場合は、他人のリポジトリをフォークしたもの
             actuallyForked = repo.parent.owner.login !== username;
         } else {
-            // parentが存在しない場合は、ownerが自分でない場合はフォークとみなす
-            actuallyForked = repo.owner?.login !== username;
+            // parentが存在しない場合（type=ownerで取得している場合）
+            // repo.fork === true ならフォークと判定
+            // type=ownerで取得している場合、ownerは常にusernameと同じになるため、
+            // owner比較ではなく、forkフラグで判定する
+            actuallyForked = true;
         }
     }
     
